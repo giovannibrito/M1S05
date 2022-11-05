@@ -18,20 +18,15 @@ export default class Time {
     }
 
     computarPartida(objPartida) {
-        let letraTime, letraAdversario, golsPro, golsContra;
+        let golsPro, golsContra;
 
         if (objPartida.siglaA === this.sigla) {
-            letraTime = "A";
-            letraAdversario = "B";
-        }
-        if (objPartida.siglaB === this.sigla) {
-            letraTime = "B";
-            letraAdversario = "A";
-        }
-        if (!letraTime) return;
-
-        golsPro = objPartida[`gols${letraTime}`];
-        golsContra = objPartida[`gols${letraAdversario}`];
+            golsPro = objPartida.golsA;
+            golsContra = objPartida.golsB;
+        } else if (objPartida.siglaB === this.sigla) {
+            golsPro = objPartida.golsB;
+            golsContra = objPartida.golsA;
+        } else return;
 
         this.golsMarcados += golsPro;
         this.golsSofridos += golsContra;
